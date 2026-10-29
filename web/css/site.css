@@ -1,0 +1,13 @@
+:root { color-scheme: dark; --bg:#0c0a10; --fg:#d8d0e8; --ac:#9a5cff; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 14px/1.4 system-ui, sans-serif; }
+main { max-width: 760px; margin: 0 auto; padding: 16px; }
+h1 { font-size: 1.2rem; margin: 0 0 12px; } h1 small { font-weight: 400; opacity: .6; margin-left: .5em; }
+#stage { position: relative; width: 100%; aspect-ratio: 4 / 3; background: #000; overflow: hidden; }
+/* the original frame is 360x480 square-pixel data shown on a 4:3 screen: height-fit, width stretched to 4:3 */
+#scr { position: absolute; inset: 0; height: 100%; width: 100%; image-rendering: auto; }
+#start { position: absolute; inset: 0; margin: auto; width: 14em; height: 3em; font-size: 1.1rem; background: var(--ac); color: #fff; border: 0; border-radius: 6px; cursor: pointer; }
+#bar { display: flex; gap: 8px; align-items: center; margin-top: 10px; }
+#bar button { background: #241c33; color: var(--fg); border: 1px solid #3a2e55; border-radius: 4px; width: 2.4em; height: 2.2em; cursor: pointer; }
+#seek { flex: 1; accent-color: var(--ac); } #time { min-width: 5em; text-align: right; font-variant-numeric: tabular-nums; }
+.keys, .note { opacity: .65; font-size: .85rem; }

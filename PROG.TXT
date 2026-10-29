@@ -1,0 +1,152 @@
+ ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ
+
+        ÛÛÛÛÜ ÛÛÛÛÜ ÜÛÛÛÜ ÜÛÛÛÜ ÛÛÛÛÜ ÜÛÛÛÜ ÜÛÛÛÜ ÜÛÛÛÜ ÛÛ ÜÛÛÛÜ ÛÛÛÛÜ
+        ÛÛ ÛÛ ÛÛ ÛÛ ÛÛ ÛÛ ÛÛ ÛÛ ÛÛ ÛÛ ÛÛ ÛÛ ÛÛ ÛÛ ÛÛ ÛÛ ÛÛ ÛÛ ÛÛ ÛÛ ÛÛ
+        ÛÛ ÛÛ ÛÛ ÛÛ ÛÛ ÛÛ ÛÛ    ÛÛ ÛÛ ÛÛÜ   ÛÛÜ   ÛÛÜ   ÛÛ ÛÛ ÛÛ ÛÛ ÛÛ
+        ÛÛÛÛß ÛÛÛÛß ÛÛ ÛÛ ÛÛ ÛÛ ÛÛÛÛß ÛÛ     ßÛÛÜ  ßÛÛÜ ÛÛ ÛÛ ÛÛ ÛÛ ÛÛ
+        ÛÛ    ÛÛ ÛÛ ÛÛ ÛÛ ÛÛ ÞÛ ÛÛ ÛÛ ÛÛ ÛÛ ÜÜ ÛÛ ÜÜ ÛÛ ÛÛ ÛÛ ÛÛ ÛÛ ÛÛ
+        ÛÛ    ÛÛ ÛÛ  ÛÛÛß ßÛÛÛß ÛÛ ÛÛ ßÛÛÛß ßÛÛÛß ßÛÛÛß ÛÛ  ÛÛÛß ÛÛ ÛÛ
+
+                             ú a musicdisk by ú
+
+               ú   ú   ú   ú     N e c r o s    ú   ú   ú   ú
+
+         [ Five Musicians ù Straylight Productions ù Legend Design ]
+
+ ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ
+
+                      (++++)   C r e d i t s    (++++)
+
+        Music / Interface Coding úúúúúúúúúúúúúúúúúú Necros
+        Interface GFX úúúúúúúúúúúúúúúúúúúúúúúúúúúúú Xten/iCE
+        Sound Libraries úúúúúúúúúúúúúúúúúúúúúúúúúúú DSIK 2.05 by Pelusa
+
+
+            (++++)   S y s t e m   R e q u i r e m e n t s  (++++)
+
+    You must have at least a 386/16 to run this player, and a supported
+    soundcard (i.e. GUS/SB/WSS/PAS16/etc). The player should autodetect your
+    configuration with no problems if you have your ULTRASND or BLASTER
+    environment variables set correctly. However, if you have a problem with
+    running the .exe itself, all the modules are included as .s3m format, so
+    you can use your player of choice.
+
+
+                   (++++)   I n f o r m a t i o n  (++++)
+
+  Progression was conceived over the process of approximately 3 months. Each
+  of the songs took a sizable amount of time, usually in the order of 20 to
+  40 hours, to complete. Hopefully the work was worth it. :) The coding took
+  me about a week (since my C skills suck :>) however I figured, might as well
+  do it myself, after all I am going to get my B.S. in comp sci in about a year
+  so i _better_ be able to code something. All tunes were written in
+  ScreamTracker 3.2, and all code was done in Watcom 10.0 with the PMODE/W
+  header from Tran.
+
+  It's very hard to continue to create and surpass what you have already
+  accomplished. In my case, I did not at first feel up to the somewhat daunting
+  task of trying to write a better musicdisk than my earlier Digital Psychosis
+  piece. DP took a really really long time to do, but thankfully the positive
+  response I have received from it has made the effort worthwhile.
+
+  With this musicdisk, I have taken a more realistic-sounding path. This is
+  evident in most of the tunes, especially in Metroplex and Greynote. It is
+  true that certain musical styles are almost impossible to represent
+  accurately in a tracker, but I firmly believe that it is possible to come
+  very close to something you would hear on a CD. By choosing good sample sets
+  and accurate orchestration, one can almost reach professional levels in a
+  tracker. Of course most of the samples are recorded at 22khz, 8-bit mono, so
+  there is a lack of resolution that one may notice as compared to a CD. It is
+  minimal, however, as I have tried to keep as much high-frequency data in as
+  was possible. Hopefully this results in a quite convincing set of music.
+
+  Many people will probably comment on the diversity evident in this
+  collection. It goes from club-jazz, to prog rock, to almost Aphex
+  Twin-sounding dance grooves, and back again. I make no apologies for this,
+  since I enjoy writing all of these styles, and more. Some people have said
+  that my general artistic touch/style carries through no matter what medium
+  the song is in, perhaps that is true, I obviously can't tell.. :)
+
+  I am in three groups, FM (Five Musicians), which is a group co-founded by
+  Mellow-D and myself. Read the FM.NFO file for more information about FM and
+  what its goals are. Legend Design is the German demo group with which I
+  contribute musik, and Straylight Productions is a commercial group consisting
+  of me, Basehead/FM, and Leviathan/Renaissance which produces music for
+  computer games, both MIDI and tracked. Currently we are working with Softdisk
+  Publishing and Origin Systems, and our work will be featured in a number of
+  on-the-shelf games.
+
+  I hope you enjoy this disk, most of the songs have taken an extreme amount of
+  effort to do, and it's taken a lot of time which could have gone towards more
+  profitable ventures. I did it because I care a lot about the music scene, and
+  want it to continue to be the wonderful creative forum it is. May it live
+  long and flourish.
+
+  Sincerely,
+  Andy Sega
+  Necros / FM
+  necros@dragon.axs.net
+
+                           (++++)   Greetings   (++++)
+
+  The concept of 'greets' in general is pretty silly, since trying to write
+  down a list of ten thousand names who I would wish to say hello to is totally
+  beyond my capabilities. However there are some people which I would like to
+  thank for their specific help in the production of this musicdisk:
+
+    Basehead / FM  -  Your support and critiques of the songs has helped to
+    make them a lot better, my sincere thanks.
+
+    Pelusa - Muchas gracias for the DSIK 2.05 playing routines, it saved me a
+    lot of work.
+
+    Channel 7 Software, Softdisk Publishing, Origin Systems - My sincere thanks
+    for letting me do game music for your companies. Without that funding, I
+    would have to work some crappy job at some mall or something, and have no
+    time to ever be able to put this together.
+
+    #trax - Even though you get a bit lame sometimes, 95% of you are great
+    people, keep up the good work.
+
+    The FM members - Thanks for making my concept of a good music group a
+    reality.
+
+    Xten/iCE - Your art is phenomenal. thanks for helping me out :>
+
+
+
+                            (++++) Legal Stuff (++++)
+
+  This archive may NOT be distributed on ANY CD-ROM without the express written
+  consent of Andrew G. Sega. Those who are discovered to have violated this
+  provision will be subject to extreme legal liability.
+
+  All music is (C) 1995 Necros / FM. All rights are reserved.
+
+  Sample-ripping is fine, as long as you let me know about it, and credit me
+  for the original ones that you use.
+
+  This archive may only be distributed in its ORIGINAL form. Re-release of the
+  music separately from the archive file is prohibited.
+
+  Distribution, duplication, and public performance in any medium is permitted
+  for non-commercial and non-profit purposes only.
+
+                              (++++) Contact (++++)
+
+  To reach me:
+
+     e-mail: necros@axs.net
+             asega@ic.sunysb.edu
+
+     snail-mail:         Andrew Sega (Necros / FM)
+                    Room B35A, Whitman College, Roth Quad
+                 State University of New York at Stony Brook
+                         Stony Brook, NY  11790
+
+  To get the latest news/tunes:
+
+     ftp: dragon.axs.net /pub/demos/songs/necros
+          ftp.cdrom.com  /pub/demos/music/incoming
+          ftp.mpoli.fi   /starport/music/fm
+
