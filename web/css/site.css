@@ -11,3 +11,11 @@ h1 { font-size: 1.2rem; margin: 0 0 12px; } h1 small { font-weight: 400; opacity
 #bar button { background: #241c33; color: var(--fg); border: 1px solid #3a2e55; border-radius: 4px; width: 2.4em; height: 2.2em; cursor: pointer; }
 #seek { flex: 1; accent-color: var(--ac); } #time { min-width: 5em; text-align: right; font-variant-numeric: tabular-nums; }
 .keys, .note { opacity: .65; font-size: .85rem; }
+/* CRT option: overlay period = k DEVICE px per source row (set by app.js), so no moire */
+#crt { position: absolute; inset: 0; pointer-events: none; display: none;
+  background: radial-gradient(ellipse at center, transparent 60%, rgba(0,0,0,.14) 100%),
+    linear-gradient(transparent 40%, rgba(0,0,0,.34)) 0 0 / 100% var(--p, 2px); }
+body.crt #crt { display: block; }
+body.crt main { max-width: none; }
+body.crt #stage { margin: 0 auto; }
+#crtl { white-space: nowrap; cursor: pointer; } #crtl.off { opacity: .45; cursor: not-allowed; }

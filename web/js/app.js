@@ -58,6 +58,26 @@ cv.addEventListener('pointerdown', e => {                  // click on a menu en
   if (player && x > 20 && x < 135 && y >= 156 && y < 396) load(Math.floor((y - 156) / 40));
 });
 
+// CRT scanlines (display only): stage height = k*H device px so each source row is exactly k device px, overlay period = k device px
+const crtc = $('crtc'), stage = $('stage');
+try { crtc.checked = localStorage.crt === '1'; } catch {}
+function layoutCrt() {
+  const dpr = devicePixelRatio, availH = Math.min(innerHeight - 150, (innerWidth - 32) * 3 / 4) * dpr;   // 150 css px ~ title + bar
+  const k = Math.floor(availH / H), ok = k >= 2, on = crtc.checked && ok;
+  $('crtl').classList.toggle('off', !ok);
+  $('crtl').title = ok ? 'CRT scanlines (C)' : 'Window too small for CRT scanlines (needs 2+ device pixels per source row)';
+  document.body.classList.toggle('crt', on);
+  if (on) {
+    stage.style.height = k * H / dpr + 'px'; stage.style.width = k * H * 4 / 3 / dpr + 'px';
+    stage.style.setProperty('--p', k / dpr + 'px');
+  } else { stage.style.height = stage.style.width = ''; }
+}
+const setCrt = v => { crtc.checked = v; try { localStorage.crt = v ? '1' : '0'; } catch {} layoutCrt(); };
+crtc.onchange = () => setCrt(crtc.checked);
+addEventListener('resize', layoutCrt); document.addEventListener('fullscreenchange', layoutCrt);
+addEventListener('keydown', e => { if (e.key.toLowerCase() === 'c' && !e.ctrlKey && !e.metaKey && !e.altKey) setCrt(!crtc.checked); });
+layoutCrt();
+
 // The original ran its UI off a 70 Hz timer (PIT divisor 0x4295 = 17045 -> 1193182/17045 = 70.0 Hz)
 let acc = 0, last = performance.now();
 (function frame(t) {

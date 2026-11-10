@@ -11,6 +11,7 @@
   <h1>Progression <small>Necros / FM, 1995 &mdash; JavaScript port of PROG.EXE</small></h1>
   <div id="stage">
     <canvas id="scr" width="360" height="480" aria-label="Progression music disk screen"></canvas>
+    <div id="crt"></div>
     <button id="start" type="button">&#9654; Click to start</button>
   </div>
   <div id="bar">
@@ -18,9 +19,10 @@
     <button id="pp" title="Pause / play (Space)">&#10074;&#10074;</button>
     <button id="next" title="Next song (Down)">&#9197;</button>
     <input id="seek" type="range" min="0" max="0" value="0" step="1" title="Seek by order (Left / Right)">
+    <label id="crtl"><input id="crtc" type="checkbox"> CRT</label>
     <span id="time">0/0</span>
   </div>
-  <p class="keys">Up/Down: song &middot; Left/Right: previous/next order &middot; Space: pause &middot; Esc: stop</p>
+  <p class="keys">Up/Down: song &middot; Left/Right: previous/next order &middot; Space: pause &middot; Esc: stop &middot; C: CRT scanlines</p>
   <p class="note">Pixels, fonts, texts and timings are rebuilt from the disassembly of PROG.EXE (360&times;480 unchained VGA, shown at 4:3 like a CRT). Sound: libopenmpt (the ModPlug engine) with cubic-spline interpolation instead of DSIK.</p>
 </main>
 <script type="module" src="js/app.js"></script>
