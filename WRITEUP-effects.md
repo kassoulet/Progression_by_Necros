@@ -67,8 +67,19 @@ The fade routines (`0x10080`, `0x10124`) are in the binary but dead code (nothin
 | `FONT.FNT` | 964 B | same format, first char 0x20, height 9, 96 records; loaded by the EXE but never drawn | not used by the port |
 
 Colours: the palette has 256 entries, of which 225 are distinct RGB values; the picture uses 204 distinct indices (maximum index 254). The shadow buffer stores
-indices, never RGB; the canvas applies the palette at paint time. No preview PNGs are saved next to this document: writing them was refused by the tool
-permission layer in this session, so they were not produced. `_re/gfx.png` (made earlier by the project) is a render of the GFX.DAT picture.
+indices, never RGB; the canvas applies the palette at paint time. Previews, rendered for this write-up straight from the shipped files (`figures/`; the picture is at its native 360x480 pixels, not aspect corrected):
+
+![GFX.DAT, 360x480 with its own palette](figures/gfx.png)
+
+![GFX.DAT palette, 256 entries in 16 x 16 swatches, row-major](figures/gfx_palette.png)
+
+![VGA.FNT, 256 glyphs of 8x16 in row-major order from code 0, 3x](figures/VGA_FNT.png)
+
+![FONT2.FNT, the menu font: 96 glyphs from 0x20, first 8 pixel columns of each record shown, 4x](figures/FONT2_FNT.png)
+
+![FONT.FNT, loaded but never drawn: 96 glyphs from 0x20, 4x](figures/FONT_FNT.png)
+
+(`_re/gfx.png`, made earlier by the project, is another render of the GFX.DAT picture.)
 
 ## 3. The two fonts
 
