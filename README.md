@@ -6,3 +6,11 @@ Browser port of the MS-DOS music disk `PROG.EXE`: the 360x480 screen is rebuilt 
 - Optional "CRT" checkbox / key `C` (display only): scanline + faint vignette CSS overlay, one band per source row (480), sized to a whole number of device pixels per row to avoid moire; needs >= 2 device px per row (window big enough), otherwise greyed out. Choice stored in localStorage.
 - Reverse notes: [REVERSE.md](REVERSE.md); tools in `tools/`
 - Original files (`PROG.EXE`, `*.S3M`, `GFX.DAT`, fonts) are kept for preservation; the music and program are (C) 1995 Necros / FM.
+
+## Write-ups on the site
+
+The write-ups are published as HTML next to the player (`web/writeups/`, generated from `WRITEUP-*.md` and the referenced `figures/`; needs pandoc). After editing a write-up, regenerate with:
+
+```
+../../tools/mkwriteups.sh . web    # shared script: demoports/tools/mkwriteups.sh REPO_DIR PUBLISH_SUBDIR
+```

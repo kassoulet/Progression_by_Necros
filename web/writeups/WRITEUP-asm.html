@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Progression (Necros / FM, 1995) - asm snippets worth
+reading</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <style>
+  :root{--bg:#fff;--fg:#1d1d22;--mut:#666;--ac:#c4155a;--code:#f3f3f6;--bd:#d8d8e0}
+  @media (prefers-color-scheme:dark){:root{--bg:#0b0b10;--fg:#d8d8e0;--mut:#9a9aa8;--ac:#ff6a9a;--code:#17171f;--bd:#33333f}}
+  *{box-sizing:border-box}
+  body{margin:0 auto;max-width:62rem;padding:0 16px;background:var(--bg);color:var(--fg);font:16px/1.55 system-ui,sans-serif}
+  #wunav{display:flex;gap:16px;flex-wrap:wrap;padding-top:12px;padding-bottom:8px;border-bottom:1px solid var(--bd);font-size:14px}
+  a{color:var(--ac)}
+  h1,h2,h3,h4{line-height:1.25;margin-top:1.8em}
+  img{max-width:100%;height:auto;image-rendering:auto}
+  pre{background:var(--code);border:1px solid var(--bd);border-radius:4px;padding:10px 12px;overflow-x:auto;font-size:13px;line-height:1.4}
+  code{background:var(--code);padding:1px 4px;border-radius:3px;font-size:.92em;overflow-wrap:anywhere}
+  pre code{background:none;padding:0;overflow-wrap:normal}
+  table{border-collapse:collapse;display:block;overflow-x:auto;max-width:100%}
+  td,th{border:1px solid var(--bd);padding:4px 8px}
+  blockquote{border-left:3px solid var(--bd);margin-left:0;padding-left:14px;color:var(--mut)}
+  #TOC{font-size:14px}#TOC ul{padding-left:1.2em}
+  #TOC>ul{padding-left:0;list-style:none}
+  details#toc-box{margin:12px 0}
+  </style>
+</head>
+<body>
+<nav id="wunav"><a href="../index.html">&larr; the demo</a> <a href="WRITEUP-asm.html">asm</a> <a href="WRITEUP-effects.html">effects</a> <a href="https://github.com/kassoulet/Progression_by_Five_Musicians">README on GitHub</a></nav>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#progression-necros--fm-1995---asm-snippets-worth-reading"
+id="toc-progression-necros--fm-1995---asm-snippets-worth-reading">Progression
+(Necros / FM, 1995) - asm snippets worth reading</a>
+<ul>
+<li><a
+href="#1-programming-an-unchained-360x480-mode-with-17-register-writes-0x30000"
+id="toc-1-programming-an-unchained-360x480-mode-with-17-register-writes-0x30000">1.
+Programming an unchained 360x480 mode with 17 register writes
+(0x30000)</a></li>
+<li><a href="#2-the-4-plane-flip-one-pass-per-plane-0x10028"
+id="toc-2-the-4-plane-flip-one-pass-per-plane-0x10028">2. The 4-plane
+flip: one pass per plane (0x10028)</a></li>
+<li><a
+href="#3-multiplying-by-360-without-a-multiplier-0x10d5b-0x10d74-0x103a0-0x10576"
+id="toc-3-multiplying-by-360-without-a-multiplier-0x10d5b-0x10d74-0x103a0-0x10576">3.
+Multiplying by 360 without a multiplier (0x10d5b, 0x10d74, 0x103a0,
+0x10576)</a></li>
+<li><a
+href="#4-bit-test-glyph-blitting-with-the-mask-table-in-the-stack-frame-0x1032e"
+id="toc-4-bit-test-glyph-blitting-with-the-mask-table-in-the-stack-frame-0x1032e">4.
+Bit-test glyph blitting with the mask table in the stack frame
+(0x1032e)</a></li>
+<li><a href="#5-the-70-hz-tick-71-ticks-to-a-second-0x105fe"
+id="toc-5-the-70-hz-tick-71-ticks-to-a-second-0x105fe">5. The 70 Hz
+tick: 71 ticks to a "second" (0x105fe)</a></li>
+<li><a href="#6-palette-upload-0x1088c"
+id="toc-6-palette-upload-0x1088c">6. Palette upload (0x1088c)</a></li>
+<li><a href="#what-is-not-here" id="toc-what-is-not-here">What is not
+here</a></li>
+</ul></li>
+</ul>
+</nav>
+<h1
+id="progression-necros--fm-1995---asm-snippets-worth-reading">Progression
+(Necros / FM, 1995) - asm snippets worth reading</h1>
+<p>Honest preface: <code>PROG.EXE</code> is a <strong>C program</strong>
+(Watcom C 10.0, 32-bit flat, PMODE/W 1.16, no packing) whose own code is
+only <code>0x10000-0x11088</code>, about 4 KB; the rest of the code
+object is the Watcom runtime and DSIK. There is no hand-tuned inner
+loop, no self-modifying code and no MMX/FPU. The compiler output is
+unoptimized in places (see the stack-check call at the top of every
+function). So this document is short: it shows the few things that are
+actually instructive.</p>
+<p>Addresses are linear addresses of the relocated image built by
+<code>tools/le.py</code> (code object at <code>0x10000</code>, stub
+object at <code>0x30000</code>). Listings come from
+<code>_re/obj1.asm</code> (the project's disassembly of that object) and
+<code>ndisasm -b 32</code> over <code>_re/obj2.bin</code>; no
+instruction below was reconstructed from memory.</p>
+<h2
+id="1-programming-an-unchained-360x480-mode-with-17-register-writes-0x30000">1.
+Programming an unchained 360x480 mode with 17 register writes
+(0x30000)</h2>
+<pre><code>30000: mov ax,0x13  / int 0x10          ; BIOS mode 13h
+3000a: mov dx,0x3c4 / mov ax,0x604 / out dx,ax   ; seq reg 4 &lt;- 06: chain-4 off
+30010: mov ax,0xf02 / out dx,ax                  ; map mask &lt;- 0f : clear all 4 planes
+30024: mov al,0xe7 / out 0x3c2,al                ; 480-line sync polarity / clock
+30031: mov dx,0x3d4 / mov al,0x11 / out dx,al
+       inc dx / in al,dx / and al,0x7f / out dx,al / dec dx   ; unlock CRTC regs 0-7
+30040: mov ax,0x6b00 / out dx,ax                 ; ... one 16-bit `out` per register
+       mov ax,0x5901 / ... 0x5a02 0x8e03 0x5e04 0x8a05 0x0d06 0x3e07 0x4009
+       0xea10 0xac11 0xdf12 0x2d13 0x0014 0xe715 0x0616 0xe317</code></pre>
+<p>Each CRTC register is written with a single <code>out dx,ax</code>
+(index in <code>al</code>, value in <code>ah</code>, data port follows
+at <code>dx+1</code>): half the I/O instructions of the 8-bit way. The
+numbers (<code>0x59</code> horizontal end, <code>0xdf</code> + overflow
+vertical end, <code>0x2d</code> offset) give 360x480 with 90 bytes per
+plane per line. That the standard mode-X register list was copy-pasted
+from a well-known recipe is plausible but is not something the binary
+proves; only the values themselves are verified here.</p>
+<h2 id="2-the-4-plane-flip-one-pass-per-plane-0x10028">2. The 4-plane
+flip: one pass per plane (0x10028)</h2>
+<pre><code>1003f: mov cl,dl / and cl,3
+10044: mov ax,0x102 / shl ah,cl          ; ah = 1 &lt;&lt; plane
+1004a: mov dx,0x3c4 / out dx,ax          ; map mask = this plane only
+10050: xor eax,eax                       ; eax = byte index in the plane
+10052: mov ebx,eax
+10054: xor edx,edx
+10056: mov dl,[esp]                      ; plane number
+10059: mov dl,[edx+ebx*4+0x48b8c]        ; shadow[ i*4 + plane ]
+10060: mov [eax+0xa0000],dl              ; VRAM[ i ]
+10066: inc eax
+10067: cmp eax,0xa8c0                    ; 43 200 bytes per plane = 360*480/4
+1006c: jl 10052</code></pre>
+<p>The shadow buffer is linear (pixel <code>x + 360 y</code>), but in
+unchained VGA pixel <code>p</code> lives in plane <code>p &amp; 3</code>
+at offset <code>p &gt;&gt; 2</code>. Because 360 is a multiple of 4,
+that mapping is simply "plane <code>k</code> takes every 4th byte
+starting at <code>k</code>", so the whole flip is four sequential
+passes. The map-mask register is set once per plane
+(<code>mov ax,0x102; shl ah,cl</code>: the classic way to build
+<code>0x0102 &lt;&lt; plane</code> in the high byte), and the
+scaled-index addressing mode <code>[edx+ebx*4+disp32]</code> does the
+stride-4 gather in the load itself. The cost is 43 200 x 4 byte moves
+per full flip, which is why the program never flips per frame: it flips
+only when the progress bar, the ticker or the selection actually changed
+(<code>call 0x10028</code> at <code>0x10e05</code>,
+<code>0x10a42</code>).</p>
+<h2
+id="3-multiplying-by-360-without-a-multiplier-0x10d5b-0x10d74-0x103a0-0x10576">3.
+Multiplying by 360 without a multiplier (0x10d5b, 0x10d74, 0x103a0,
+0x10576)</h2>
+<p>Every pixel address <code>y*360 + x</code> is computed with shifts
+and subtractions. Here for the progress-bar clear, with
+<code>edx = y</code>:</p>
+<pre><code>10d5b: lea edx,[ecx+0x1a3]       ; y = row + 419
+10d61: mov eax,edx
+10d63: shl eax,2                 ; 4y
+10d66: sub eax,edx               ; 3y
+10d68: shl eax,3                 ; 24y
+10d6b: mov edx,eax
+10d6d: shl eax,4                 ; 384y
+10d70: sub eax,edx               ; 384y - 24y = 360y
+10d72: add eax,[esp]             ; + x
+10d77: mov [eax+0x48bdb],dl      ; shadow[ ... ] (0x48b8c + 79 = 0x48bdb)</code></pre>
+<p><code>360 = 24 x 15 = 24 x 16 - 24</code>, so <code>3y</code>,
+<code>&lt;&lt;3</code>, <code>&lt;&lt;4</code>, <code>-</code> is
+exactly three shifts and two subtractions. This is the Watcom code
+generator's strength reduction of a constant multiply (the C source
+almost certainly just says <code>y * 360</code>). The same sequence
+appears in the two text routines. Similarly
+<code>200 * order / numOrders</code> for the progress width
+(<code>0x10da0</code>...) is <code>((o&lt;&lt;2) - o) &lt;&lt; 3</code>
++ <code>o</code>, then <code>&lt;&lt;3</code> =
+<code>25o &lt;&lt; 3</code>, followed by one <code>idiv</code>.</p>
+<h2
+id="4-bit-test-glyph-blitting-with-the-mask-table-in-the-stack-frame-0x1032e">4.
+Bit-test glyph blitting with the mask table in the stack frame
+(0x1032e)</h2>
+<pre><code>1034c: mov edi,esp
+1034e: mov esi,0x10010                    ; 8-byte table 80 40 20 10 08 04 02 01
+10353: movsd / movsd                      ; copy it to the stack in two instructions
+...
+1036a: mov bl,[edx+eax+0x4458c]           ; glyph row byte  (VGA.FNT + char*16 + row)
+10373: mov al,[esp+ecx]                   ; mask for column ecx
+10376: and ebx,eax
+10378: cmp ebx,eax
+1037a: jnz skip                           ; bit not set -&gt; transparent
+...    ; pixel offset = x + col + 6*i + 360*(y + row), colour stored with `mov [edi+eax+0x48b8c],bl`</code></pre>
+<p>Two small things: the 8 mask bytes are copied into a local array with
+a pair of <code>movsd</code> (the compiler's way to initialise a
+<code>static const</code> local), and the test is the
+<code>and</code>/<code>cmp</code> pair
+("<code>(b &amp; m) == m</code>"), which is correct for single-bit
+masks. The three font routines (<code>0x1032e</code>,
+<code>0x103ce</code>, <code>0x104cb</code>) differ only in the mask
+table (<code>0x10010</code> msb-first for VGA.FNT, <code>0x10018</code>
+/ <code>0x10020</code> lsb-first for FONT*.FNT) and in the doubled row
+of the menu font. This is plain, correct, slow code: a byte of the glyph
+is re-read for every column. The program has nothing to speed up (a few
+hundred glyph pixels per redraw), so nothing here was tuned.</p>
+<h2 id="5-the-70-hz-tick-71-ticks-to-a-second-0x105fe">5. The 70 Hz
+tick: 71 ticks to a "second" (0x105fe)</h2>
+<pre><code>10608: push ecx / push edx
+1060a: call 0x12174                       ; DSIK sound-library tick
+1060f: mov edx,[0xa44f4] / inc edx / mov [0xa44f4],edx
+1061c: cmp edx,0x46                       ; &gt; 70 ?
+1061f: jng 0x1062f
+10621: xor ecx,ecx / mov [0xa44f4],ecx
+10629: inc dword [0xa44f0]                ; &quot;seconds&quot;</code></pre>
+<p><code>cmp edx,0x46 / jng</code> means the sub-counter takes the
+values 1..70 then wraps, so a "second" is <strong>71 ticks</strong> (the
+port reproduces this: <code>if (++tick70 &gt; 70)</code>). With the PIT
+divisor <code>0x4295</code> (17 045) the base rate is 1 193 182 / 17
+045, about 70.0 Hz, so the UI "second" is about 1.014 s. The callback
+itself only counts: all drawing is left to the main loop (section 6 of
+the effects write-up), which is the sane way to use a timer interrupt in
+DOS (no VGA writes with the interrupt flag in an unknown state).</p>
+<h2 id="6-palette-upload-0x1088c">6. Palette upload (0x1088c)</h2>
+<pre><code>108a8: mov eax,0x3c8 / call 0x110c7       ; outp(0x3c8, 0)  : DAC write index 0
+108b4: mov dl,[ecx+ebx]
+108b9: sar edx,2                          ; 8-bit -&gt; 6-bit
+108bc: mov eax,0x3c9 / call 0x110c7       ; outp(0x3c9, v&gt;&gt;2)
+108c6: inc ebx / cmp ebx,0x300 / jl 108b4</code></pre>
+<p><code>outp</code> is the Watcom library function called three hundred
+times (it is a real <code>call 0x110c7</code>, not an inline
+<code>out</code>), and the shift discards the two low bits of the 8-bit
+palette stored in <code>GFX.DAT</code>. The port mirrors the loss on
+purpose (DAC value = <code>v &gt;&gt; 2</code>, then expanded to 8 bits
+for display).</p>
+<h2 id="what-is-not-here">What is not here</h2>
+<p>No decompression (the EXE is not packed; PMODE/W stores the LE image
+uncompressed, so no Unicorn unpacking was needed:
+<code>tools/le.py</code> only parses and relocates it), no
+self-modifying code, no table-driven effect, no FPU or MMX code in the
+program's own region. The sound engine (DSIK 2.05, Carlos Hasan) is a
+separate library inside the same object and was <strong>not</strong>
+analysed for this write-up; the port replaces it with libopenmpt.
+<code>0x107f1</code> builds sine tables that nothing uses (per
+<code>REVERSE.md</code>).</p>
+</body>
+</html>

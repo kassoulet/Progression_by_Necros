@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Progression (Necros / FM, 1995) - what the "effects"
+are</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <style>
+  :root{--bg:#fff;--fg:#1d1d22;--mut:#666;--ac:#c4155a;--code:#f3f3f6;--bd:#d8d8e0}
+  @media (prefers-color-scheme:dark){:root{--bg:#0b0b10;--fg:#d8d8e0;--mut:#9a9aa8;--ac:#ff6a9a;--code:#17171f;--bd:#33333f}}
+  *{box-sizing:border-box}
+  body{margin:0 auto;max-width:62rem;padding:0 16px;background:var(--bg);color:var(--fg);font:16px/1.55 system-ui,sans-serif}
+  #wunav{display:flex;gap:16px;flex-wrap:wrap;padding-top:12px;padding-bottom:8px;border-bottom:1px solid var(--bd);font-size:14px}
+  a{color:var(--ac)}
+  h1,h2,h3,h4{line-height:1.25;margin-top:1.8em}
+  img{max-width:100%;height:auto;image-rendering:auto}
+  pre{background:var(--code);border:1px solid var(--bd);border-radius:4px;padding:10px 12px;overflow-x:auto;font-size:13px;line-height:1.4}
+  code{background:var(--code);padding:1px 4px;border-radius:3px;font-size:.92em;overflow-wrap:anywhere}
+  pre code{background:none;padding:0;overflow-wrap:normal}
+  table{border-collapse:collapse;display:block;overflow-x:auto;max-width:100%}
+  td,th{border:1px solid var(--bd);padding:4px 8px}
+  blockquote{border-left:3px solid var(--bd);margin-left:0;padding-left:14px;color:var(--mut)}
+  #TOC{font-size:14px}#TOC ul{padding-left:1.2em}
+  #TOC>ul{padding-left:0;list-style:none}
+  details#toc-box{margin:12px 0}
+  </style>
+</head>
+<body>
+<nav id="wunav"><a href="../index.html">&larr; the demo</a> <a href="WRITEUP-asm.html">asm</a> <a href="WRITEUP-effects.html">effects</a> <a href="https://github.com/kassoulet/Progression_by_Five_Musicians">README on GitHub</a></nav>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#progression-necros--fm-1995---what-the-effects-are"
+id="toc-progression-necros--fm-1995---what-the-effects-are">Progression
+(Necros / FM, 1995) - what the "effects" are</a>
+<ul>
+<li><a href="#1-display-360x480-unchained-43"
+id="toc-1-display-360x480-unchained-43">1. Display: 360x480, unchained,
+4:3</a></li>
+<li><a href="#2-the-back-drop-and-the-palette"
+id="toc-2-the-back-drop-and-the-palette">2. The back-drop and the
+palette</a>
+<ul>
+<li><a href="#2b-2d-art-inventory-checked-against-the-files"
+id="toc-2b-2d-art-inventory-checked-against-the-files">2b. 2D art
+inventory (checked against the files)</a></li>
+</ul></li>
+<li><a href="#3-the-two-fonts" id="toc-3-the-two-fonts">3. The two
+fonts</a></li>
+<li><a href="#4-menu-and-panel" id="toc-4-menu-and-panel">4. Menu and
+panel</a></li>
+<li><a href="#5-timing-a-70-hz-tick-a-progress-bar-and-a-ticker"
+id="toc-5-timing-a-70-hz-tick-a-progress-bar-and-a-ticker">5. Timing: a
+70 Hz tick, a progress bar and a ticker</a></li>
+<li><a href="#6-what-is-exact-and-what-is-not"
+id="toc-6-what-is-exact-and-what-is-not">6. What is exact and what is
+not</a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="progression-necros--fm-1995---what-the-effects-are">Progression
+(Necros / FM, 1995) - what the "effects" are</h1>
+<p><em>Progression</em> is a music disk, not a demo:
+<code>PROG.EXE</code> (114 KB, Watcom C 10.0 + PMODE/W 1.16 + DSIK 2.05
+sound library) plays six ScreamTracker 3 modules (<code>METROPLX</code>,
+<code>CROSSING</code>, <code>COLLAGE</code>, <code>POINT</code>,
+<code>ISOTOXIN</code>, <code>GREYNOTE</code>) behind one static picture.
+There is <strong>no scene, no 3D, no per-frame animation</strong>. What
+the program draws is a menu, a text panel, a progress bar and a ticker.
+This write-up is therefore short: it describes exactly those, plus the
+screen mode they live in. Nothing here is guessed; the addresses are
+those of the 32-bit code object (<code>0x10000...</code>, see
+<code>REVERSE.md</code>), the listings are from
+<code>_re/obj1.asm</code> / <code>_re/obj2.bin</code> (the unpacked LE
+objects dumped by <code>tools/le.py</code>).</p>
+<h2 id="1-display-360x480-unchained-43">1. Display: 360x480, unchained,
+4:3</h2>
+<p>The mode setter is a 0xA7-byte stub at <code>0x30000</code>. It does
+<code>int 10h</code> mode 13h and then reprograms the VGA registers by
+hand:</p>
+<pre><code>30000: mov ax,0x13 / int 0x10         ; start from mode 13h
+3000a: mov ax,0x604 ; out 0x3c4,ax    ; sequencer reg 4 = 06 : chain-4 off, odd/even off (&quot;unchained&quot;, mode X)
+30010: mov ax,0xf02 ; out 0x3c4,ax    ; map mask = all four planes (clear VRAM)
+30024: mov al,0xe7  ; out 0x3c2,al    ; misc output: 480-line timing (negative sync)
+30031: mov dx,0x3d4 ... and al,0x7f   ; clear CRTC reg 0x11 bit 7 (unlock regs 0-7)
+30040: out 0x3d4,ax  with ax = 6b00 5901 5a02 8e03 5e04 8a05 0d06 3e07 4009 ea10 ac11 df12 2d13 0014 e715 0616 e317</code></pre>
+<p>Decoding the CRTC values that matter (VGA CRTC register meanings are
+standard, not derived from this binary):</p>
+<ul>
+<li>reg 1 <code>0x59</code> = 89: 90 character clocks displayed, i.e. 90
+x 4 planes = <strong>360 pixels</strong> per line.</li>
+<li>reg 0x12 <code>0xdf</code> plus the overflow bit in reg 7
+(<code>0x3e</code>, bit 1) = 0x1df = 479: <strong>480
+lines</strong>.</li>
+<li>reg 0x13 <code>0x2d</code> = 45 words: logical line pitch <strong>90
+bytes per plane</strong>.</li>
+<li>reg 9 <code>0x40</code>: max scan line = 0 (no line doubling, unlike
+mode 13h).</li>
+</ul>
+<p>So the screen is 360x480x256, a mode with 1:1 pixel data but 480-line
+timing on a 4:3 monitor, hence pixels about 1.78x wider than tall (the
+port, and <code>REVERSE.md</code>, say this). <strong>The port does not
+emulate any of the CRTC</strong>; it knows the geometry only from these
+numbers: the canvas is 360x480 and the CSS box is
+<code>aspect-ratio: 4 / 3</code> (<code>web/css/site.css</code>), which
+is the aspect-ratio requirement of the brief. Because the original draws
+a 240-line look into 480 lines, the menu font is drawn with every row
+doubled (section 3).</p>
+<p>Everything is drawn into a <strong>shadow buffer</strong> (360x480
+bytes at <code>0x48b8c</code>) and copied to the four planes by
+<code>0x10028</code> (see the asm write-up). The port keeps only the
+shadow buffer (<code>buf</code> in <code>web/js/screen.js</code>) and
+paints it with the palette; the plane copy is a no-op for it.</p>
+<h2 id="2-the-back-drop-and-the-palette">2. The back-drop and the
+palette</h2>
+<p><code>GFX.DAT</code> is an <code>mhwanh</code> file: a 32-byte header
+(the width 0x0168 = 360 and height 0x01e0 = 480 are in it), a 768-byte
+RGB palette, then 360x480 = 172 800 raw palette indices (204 distinct
+values are used). The loader (<code>0x108d3</code>) puts the palette and
+the picture in memory; <code>0x10985</code> (screen draw) copies the
+whole picture into the shadow buffer with one <code>memcpy</code> of
+0x2a300 = 172 800 bytes. The port does the same:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="kw">function</span> <span class="fu">loadGfx</span>(dat) {</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> { <span class="dt">pal</span><span class="op">:</span> dat<span class="op">.</span><span class="fu">subarray</span>(<span class="dv">32</span><span class="op">,</span> <span class="dv">32</span> <span class="op">+</span> <span class="dv">768</span>)<span class="op">,</span> <span class="dt">bg</span><span class="op">:</span> dat<span class="op">.</span><span class="fu">subarray</span>(<span class="dv">32</span> <span class="op">+</span> <span class="dv">768</span><span class="op">,</span> <span class="dv">32</span> <span class="op">+</span> <span class="dv">768</span> <span class="op">+</span> W <span class="op">*</span> H) }<span class="op">;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">draw</span>() { <span class="kw">this</span><span class="op">.</span><span class="at">buf</span><span class="op">.</span><span class="fu">set</span>(<span class="kw">this</span><span class="op">.</span><span class="at">g</span><span class="op">.</span><span class="at">bg</span>)<span class="op">;</span> <span class="co">/* then menu + info panel */</span> }</span></code></pre></div>
+<p>The palette upload is <code>0x1088c</code>: it sets the DAC write
+index with <code>out 0x3c8</code> then writes 768 bytes to
+<code>0x3c9</code>, each <code>v &gt;&gt; 2</code> (the VGA DAC is 6
+bits). <code>app.js</code> expands those 6-bit values back to 8 bits for
+the canvas. The picture's text colours are plain palette entries chosen
+by the program:</p>
+<ul>
+<li>menu entries: colour 9 (0x5757ff, blue) when idle, colour 15 (white)
+for the selected one;</li>
+<li>ticker: colour 11 (0x57ffff, cyan);</li>
+<li>info panel line <code>n</code> (13 lines): colour
+<code>0x80 + n</code>. The palette entries 0x80..0x8c in
+<code>GFX.DAT</code> form a smooth ramp from (231,187,255) down to
+(139,111,155), so the panel text gets a <strong>vertical gradient with
+no per-pixel work</strong>: it is the palette, not the code, that does
+it.</li>
+</ul>
+<p>The fade routines (<code>0x10080</code>, <code>0x10124</code>) are in
+the binary but dead code (nothing calls them; <code>REVERSE.md</code>),
+so there is no fade in the port either.</p>
+<h3 id="2b-2d-art-inventory-checked-against-the-files">2b. 2D art
+inventory (checked against the files)</h3>
+<table>
+<thead>
+<tr>
+<th>file</th>
+<th>size</th>
+<th>layout</th>
+<th>decoded by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GFX.DAT</code></td>
+<td>173 600 B</td>
+<td>32-byte <code>mhwanh</code> header (width 360 and height 480 are
+stored big-endian at offsets 8 and 10; offset 12 holds 0x0100) at 0;
+<strong>palette at offset 32, 768 B</strong> (256 x RGB, 8 bit);
+<strong>pixels at offset 800, 172 800 B</strong> = 360x480 raw indices,
+row-major, no compression</td>
+<td><code>loadGfx</code> (<code>screen.js</code>); original loader
+<code>0x108d3</code></td>
+</tr>
+<tr>
+<td><code>VGA.FNT</code></td>
+<td>4096 B</td>
+<td>256 glyphs x 16 bytes, one byte per row, msb = leftmost pixel; 253
+of the 256 glyphs are non-empty</td>
+<td><code>textVga</code>; original <code>0x1032e</code></td>
+</tr>
+<tr>
+<td><code>FONT2.FNT</code></td>
+<td>1060 B</td>
+<td>4-byte header (first char 0x20, height 10), then 96 records of 10
+row bytes + 1 width byte (chars 0x20..0x7f); rows lsb-first</td>
+<td><code>loadFnt</code> + <code>textFnt</code>; original
+<code>0x101c5</code> / <code>0x104cb</code></td>
+</tr>
+<tr>
+<td><code>FONT.FNT</code></td>
+<td>964 B</td>
+<td>same format, first char 0x20, height 9, 96 records; loaded by the
+EXE but never drawn</td>
+<td>not used by the port</td>
+</tr>
+</tbody>
+</table>
+<p>Colours: the palette has 256 entries, of which 225 are distinct RGB
+values; the picture uses 204 distinct indices (maximum index 254). The
+shadow buffer stores indices, never RGB; the canvas applies the palette
+at paint time. Previews, rendered for this write-up straight from the
+shipped files (<code>figures/</code>; the picture is at its native
+360x480 pixels, not aspect corrected):</p>
+<p><img src="figures/gfx.png"
+alt="GFX.DAT, 360x480 with its own palette" /></p>
+<p><img src="figures/gfx_palette.png"
+alt="GFX.DAT palette, 256 entries in 16 x 16 swatches, row-major" /></p>
+<p><img src="figures/VGA_FNT.png"
+alt="VGA.FNT, 256 glyphs of 8x16 in row-major order from code 0, 3x" /></p>
+<p><img src="figures/FONT2_FNT.png"
+alt="FONT2.FNT, the menu font: 96 glyphs from 0x20, first 8 pixel columns of each record shown, 4x" /></p>
+<p><img src="figures/FONT_FNT.png"
+alt="FONT.FNT, loaded but never drawn: 96 glyphs from 0x20, 4x" /></p>
+<p>(<code>_re/gfx.png</code>, made earlier by the project, is another
+render of the GFX.DAT picture.)</p>
+<h2 id="3-the-two-fonts">3. The two fonts</h2>
+<p>Both text routines are plain bit-test loops writing one byte per set
+pixel into the shadow buffer; the port mirrors them function for
+function.</p>
+<p><strong>VGA text, <code>0x1032e</code></strong> (info panel, ticker):
+glyphs from <code>VGA.FNT</code> (256 x 16 bytes, one byte per row, msb
+first), 8 wide, drawn on a <strong>6-pixel pitch</strong>. The shipped
+<code>VGA.FNT</code> is a narrow 5-pixel face, so successive glyphs
+touch their neighbours' empty column instead of overlapping. Only set
+bits are written (transparent background, so the picture shows
+through):</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="kw">function</span> <span class="fu">textVga</span>(buf<span class="op">,</span> vga<span class="op">,</span> s<span class="op">,</span> x<span class="op">,</span> y<span class="op">,</span> col) {</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> s<span class="op">.</span><span class="at">length</span><span class="op">;</span> i<span class="op">++</span>) {</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> ch <span class="op">=</span> s<span class="op">.</span><span class="fu">charCodeAt</span>(i)<span class="op">;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (<span class="kw">let</span> c <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> c <span class="op">&lt;</span> <span class="dv">8</span><span class="op">;</span> c<span class="op">++</span>) <span class="cf">for</span> (<span class="kw">let</span> r <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> r <span class="op">&lt;</span> <span class="dv">16</span><span class="op">;</span> r<span class="op">++</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (vga[ch <span class="op">*</span> <span class="dv">16</span> <span class="op">+</span> r] <span class="op">&amp;</span> MASK[c]) buf[(y <span class="op">+</span> r) <span class="op">*</span> W <span class="op">+</span> x <span class="op">+</span> c <span class="op">+</span> <span class="dv">6</span> <span class="op">*</span> i] <span class="op">=</span> col<span class="op">;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p><strong>Menu font, <code>0x104cb</code></strong>:
+<code>FONT2.FNT</code> is a proportional bitmap font (4-byte header
+<code>[first char, ?, height, ?]</code>, then per glyph
+<code>height</code> rows and one width byte, <strong>lsb
+first</strong>). The routine writes every pixel <strong>twice, on rows
+<code>y+2r</code> and <code>y+2r+1</code></strong>, which is how a
+10-row font fills the 480-line mode; a space advances 6 pixels, other
+glyphs advance their own width byte. <code>FONT.FNT</code> is loaded by
+the original but never used.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (<span class="kw">let</span> r <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> r <span class="op">&lt;</span> font<span class="op">.</span><span class="at">h</span><span class="op">;</span> r<span class="op">++</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">let</span> c <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> c <span class="op">&lt;</span> w<span class="op">;</span> c<span class="op">++</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (b <span class="op">&amp;</span> MASK_LSB[c <span class="op">&amp;</span> <span class="dv">7</span>]) { buf[(y <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>r)<span class="op">*</span>W <span class="op">+</span> x <span class="op">+</span> ofs <span class="op">+</span> c] <span class="op">=</span> col<span class="op">;</span> buf[(y <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>r)<span class="op">*</span>W <span class="op">+</span> W <span class="op">+</span> x <span class="op">+</span> ofs <span class="op">+</span> c] <span class="op">=</span> col<span class="op">;</span> }</span></code></pre></div>
+<h2 id="4-menu-and-panel">4. Menu and panel</h2>
+<p><code>0x10985</code> draws the six titles at x = 25, y = 160 + 40 i
+(the listing shows <code>y = i*5*8 + 0xa0</code>), colour 9, then
+redraws entry 0 in colour 15 and the 13 info lines of song 0 at x = 148,
+y = 154 + 16 n. Selecting another song (<code>0x10a66</code>) redraws
+the old entry in 9, the new one in 15, restores the panel rectangle (x
+148..340, y 154..380) from the back-drop copy and writes the new text.
+The texts (menu, 6 x 13 info lines, 30 ticker lines) live in the data
+object; <code>tools/extract_strings.py</code> dumps them to
+<code>web/assets/strings.json</code>.</p>
+<h2 id="5-timing-a-70-hz-tick-a-progress-bar-and-a-ticker">5. Timing: a
+70 Hz tick, a progress bar and a ticker</h2>
+<p>The program reprograms the PIT with divisor <code>0x4295</code>
+(about 70 Hz) and installs the callback <code>0x105fe</code>. After
+calling the DSIK library (<code>call 0x12174</code>) it increments a
+sub-counter and, past 70, bumps a "seconds" counter:</p>
+<pre><code>1060f: mov edx,[0xa44f4] / inc edx / mov [0xa44f4],edx
+1061c: cmp edx,0x46 / jng skip        ; 0..70 : 71 ticks per &quot;second&quot;
+10621: mov [0xa44f4],0 / inc [0xa44f0] ; seconds++</code></pre>
+<p>The drawing happens in the idle loop (<code>0x10d3b</code>...), not
+in the interrupt, keyed on that counter:</p>
+<ul>
+<li><strong>counter % 6 == 0</strong>: redraw the progress bar. It
+clears 202 x 8 pixels at x 79.., y 419..426, then fills 6 rows (y
+420..425) of colour 9 from x = 80, of width
+<code>200 * order / numOrders</code>. The two player fields read are the
+current order (<code>[player+0x60a]</code>) and the song length in
+orders (<code>[player+0x60b]</code>). <strong>The bar is
+order-granular</strong>, not sample-accurate: it moves in steps of
+200/numOrders pixels.</li>
+<li><strong>counter % 25 == 0</strong>: the ticker. The 16-row band y
+450..465 is restored from the back-drop, the next of the 30 messages is
+drawn with <code>textVga</code> centred on x = 180 (the port:
+<code>180 - 3 * s.length</code>, 6 px per char), colour 11, and the
+message index wraps at 30.</li>
+<li>each of the two draws also executes <code>counter++</code>
+(<code>0x10e0a</code>...), so the same counter value is not tested twice
+and the redraws drift apart from the pure "every 6th / 25th second"
+schedule. The port keeps this quirk (<code>timer70()</code> in
+<code>screen.js</code>).</li>
+</ul>
+<p>The seconds counter is a UI counter only: it is not the music clock.
+DSIK plays on its own interrupt.</p>
+<h2 id="6-what-is-exact-and-what-is-not">6. What is exact and what is
+not</h2>
+<ul>
+<li><strong>Exact</strong>: the whole 360x480 screen.
+<code>tools/verify_screen.py</code> runs the EXE's own
+<code>0x10985</code> (screen draw) and <code>0x1032e</code> (VGA text)
+under Unicorn on the loaded objects;
+<code>tools/verify_screen.mjs</code> compares
+<code>web/js/screen.js</code> to the dump: 0 differing pixels for the
+initial screen and for a ticker line (per <code>REVERSE.md</code>;
+re-run both to confirm). The menu font routine <code>0x104cb</code>, the
+progress bar and the redraw schedule are ported from the same
+disassembly but are not part of that automated comparison.</li>
+<li><strong>Not the original</strong>: the sound. The port plays the S3M
+files with libopenmpt (cubic-spline interpolation) instead of DSIK 2.05,
+so the mixing, interpolation and any DSIK quirks differ. Song position
+and seeking are libopenmpt's (the original has Left/Right =
+previous/next order; the port adds a slider and click-to-select on the
+menu).</li>
+<li><strong>Not emulated</strong>: VGA planes, CRTC and DAC. They are
+replaced by a canvas with a 4:3 box and an optional CSS scanline overlay
+(display only).</li>
+<li>The port runs the UI at 70 ticks/s from
+<code>requestAnimationFrame</code> with an accumulator, not from a PIT
+interrupt.</li>
+</ul>
+</body>
+</html>
